@@ -1,0 +1,33 @@
+Nombre de classes : 75
+Nombre de lignes de code : 3028
+Nombre de méthodes : 247
+Nombre de packages : 38
+Nombre moyen de méthodes par classes : 3.2933333
+Nombre moyen de ligne de code par méthode : 1.7044535
+Nombre moyen d'attributs par classe : 2.2266666666666666
+10% des classes ayant le plus de méthodes : 
+ - CollectionEntity : 22 méthodes
+ - BodyFormInputPanel : 15 méthodes
+ - CollectionStructureFolderEntity : 11 méthodes
+ - CollectionBodyEntity : 10 méthodes
+ - BodyRawTypeModel : 10 méthodes
+ - CustomTitleBar : 10 méthodes
+ - HeadersFormInputPanel : 9 méthodes
+10% des classes ayant le plus de champs : 
+ - SocketIoPanel : 11 attributs
+ - CollectionEntity : 11 attributs
+ - RestPanel : 8 attributs
+ - ResponseBodyPanel : 7 attributs
+ - BodyFormInputPanel : 7 attributs
+ - BodyPanel : 7 attributs
+ - ServerSentEventPanel : 7 attributs
+Liste des classes appartenants aux deux catégories précédentes : 
+ - CollectionEntity
+ - BodyFormInputPanel
+Liste des classes ayant plus de 10 méthodes : 
+ - BodyFormInputPanel
+ - CollectionEntity
+ - CollectionStructureFolderEntity
+Nombre maximal de paramètres par rapport à toutes les méthodes de l'application : 7
+End Analysis
+
