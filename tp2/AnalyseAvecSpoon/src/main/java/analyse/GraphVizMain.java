@@ -50,14 +50,15 @@ public class GraphVizMain {
 
 	if(!isParsed)
 	    return;
-		
-	String sourceCodePath = arguments.getSource();
+
 	String experiment_output_filepath = arguments.getTarget();
+
+	String sourceCodePath = arguments.getSource();
 		
 	Launcher launcher = new MavenLauncher(sourceCodePath, MavenLauncher.SOURCE_TYPE.APP_SOURCE); // r
 	Environment environment = launcher.getEnvironment();
 	environment.setAutoImports(true);
-		
+
 	System.out.println("Run Launcher and fetch model.");
 	launcher.run();
 	model = launcher.getModel(); // returns the model of the project
