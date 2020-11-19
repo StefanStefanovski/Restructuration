@@ -10,13 +10,7 @@ import spoon.reflect.declaration.CtMethod;
 import java.util.List;
 
 public class CouplingMetric {
-    public double compute(CtClass a, CtClass b, List<CtClass> classes) {
-        int totalCalls = 0;
-
-        for (CtClass c : classes) {
-            totalCalls += computeNumberOfCalls(c, null);
-        }
-
+    public static double compute(CtClass a, CtClass b, int totalCalls) {
         int numberOfCalls = computeNumberOfCalls(a, b);
 
         return ((double) numberOfCalls) / totalCalls;
