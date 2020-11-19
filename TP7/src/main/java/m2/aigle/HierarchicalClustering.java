@@ -61,14 +61,8 @@ public class HierarchicalClustering {
 		while (clusters.size() > 1) {
 			Collections.sort(clusters);
 
-			List<Node> choices = new ArrayList<>(clusters);
-			
-			if (initialNodeSet.size() > 1) {
-				choices.retainAll(initialNodeSet);
-			}
-
-			Node first = choices.get(choices.size() - 2);
-			Node second = choices.get(choices.size() - 1);
+			Node first = clusters.get(clusters.size() - 2);
+			Node second = clusters.get(clusters.size() - 1);
 			Node newNode = new Node(first, second);
 			newNode.computeScore(CouplingMetric.totalCalls(newNode.findClasses()));
 			
@@ -76,19 +70,8 @@ public class HierarchicalClustering {
 			clusters.remove(second);
 			clusters.add(newNode);
 			
-			if (initialNodeSet.size() > 1) {
-				initialNodeSet.remove(first);
-				initialNodeSet.remove(second);
-			}
-			
-			System.out.println("Arbres : ");
-			for (Node n : clusters) {
-				n.print(System.out);
-			}
 		}
-		
-		clusters.get(0).print(System.out);
-		
+				
 		return clusters.get(0);
 	}
 }

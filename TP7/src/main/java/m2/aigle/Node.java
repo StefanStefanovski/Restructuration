@@ -10,7 +10,7 @@ public class Node implements Comparable<Node> {
     private CtClass cls = null;
     private Node leftChild = null;
 	private Node rightChild = null;
-    private double score = 0;
+    private double score = -1;
 
     private Node(Node leftChild, Node rightChild, CtClass cls) {
         this.cls = cls;
