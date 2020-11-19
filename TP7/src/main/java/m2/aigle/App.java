@@ -4,17 +4,11 @@ import java.util.List;
 import java.util.Set;
 import java.util.Queue;
 import java.util.LinkedList;
-import java.io.File;
 import java.io.BufferedWriter;
-import java.io.BufferedReader;
 import java.io.FileWriter;
-import java.io.FileReader;
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.util.HashSet;
 import java.io.IOException;
 import spoon.reflect.CtModel;
-import spoon.reflect.declaration.CtMethod;
 import spoon.reflect.declaration.CtClass;
 import spoon.support.reflect.declaration.CtClassImpl;
 import spoon.reflect.visitor.filter.TypeFilter;
@@ -23,19 +17,6 @@ import spoon.reflect.visitor.filter.AbstractFilter;
 import spoon.compiler.Environment;
 import spoon.Launcher;
 import spoon.MavenLauncher;
-import spoon.reflect.declaration.CtType;
-import guru.nidi.graphviz.attribute.Color;
-import guru.nidi.graphviz.attribute.Font;
-import guru.nidi.graphviz.attribute.Rank;
-import guru.nidi.graphviz.attribute.Rank.RankDir;
-import guru.nidi.graphviz.attribute.Style;
-import guru.nidi.graphviz.engine.Format;
-import guru.nidi.graphviz.engine.Graphviz;
-import guru.nidi.graphviz.model.Graph;
-import guru.nidi.graphviz.model.MutableGraph;
-import guru.nidi.graphviz.model.MutableNode;
-import guru.nidi.graphviz.parse.Parser;
-import static guru.nidi.graphviz.model.Factory.*;
 
 public class App
 {
@@ -60,15 +41,22 @@ public class App
 
         List<CtClass> classList = model.getElements(new TypeFilter<CtClass>(CtClass.class));
 
-        int totalCalls = 0;
-        for (CtClass c : classList) {
-            totalCalls += CouplingMetric.computeNumberOfCalls(c, null);
-        }
+        int totalCalls = CouplingMetric.totalCalls(classList);
 
         try {
+        	System.out.println("Génération du graphe pondéré ...");
             loop(totalCalls, model);
+            System.out.println("Done !");
         } catch (IOException e) {
             e.printStackTrace();
+        }
+        
+        List<MicroService> microServices = new HierarchicalClustering(classList, new CouplingMetric(), totalCalls).run();
+        
+        System.out.println("Liste des micro-services : ");
+        
+        for (MicroService ms : microServices) {
+        	System.out.println(" - " + ms);
         }
     }
 
